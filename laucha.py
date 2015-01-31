@@ -408,92 +408,6 @@ class regexp_parser:
             self.pos = oldpos
             raise
 
-    # def parse_RE(self):
-    #     """
-    #     <RE>                ::= <union> <TOK_ENDOFSTR> | <simple_RE> <TOK_ENDOFSTR>
-    #     """
-    #     oldpos = self.pos
-    #     try:
-    #         node = regexp_node('RE')
-    #         try:
-    #             a = self.parse_simple_RE()
-    #             if self.tok_peek() != (TOK_ENDOFSTR, None):
-    #                 raise laucha_parser_missing_token()
-    #             b = self.tok_next()
-    #             node.childs.append(a)
-    #             node.childs.append(b)
-    #             return node
-    #         except laucha_parser_missing_token, e:
-    #             self.pos = oldpos
-
-    #         a = self.parse_union()
-    #         if self.tok_peek() != (TOK_ENDOFSTR, None):
-    #             raise laucha_parser_missing_token()
-    #         b = self.tok_next()
-    #         node.childs.append(a)
-    #         node.childs.append(b)
-    #         return node            
-    #     except laucha_parser_missing_token, e:
-    #         self.pos = oldpos
-    #         raise
-
-    # def parse_union(self):
-    #     """
-    #     <union>             ::= <RE> "|" <simple_RE>
-    #     """
-    #     oldpos = self.pos
-    #     try:
-    #         node = regexp_node('union')
-    #         a = self.parse_RE()
-    #         if self.tok_peek() != (TOK_SPECIAL, '|'):
-    #             raise laucha_parser_missing_token()
-    #         b = self.tok_next()
-    #         c = self.parse_simple_RE()
-    #         node.childs.append(a)
-    #         node.childs.append(b)
-    #         node.childs.append(c)
-    #         return node
-    #     except laucha_parser_missing_token, e:
-    #         self.pos = oldpos
-    #         raise
-
-    # def parse_simple_RE(self):
-    #     """
-    #     <simple_RE>         ::= <concatenation> | <basic_RE>
-    #     """
-    #     oldpos = self.pos
-    #     try:
-    #         node = regexp_node('simple_RE')
-    #         try:
-    #             a = self.parse_basic_RE()
-    #             node.childs.append(a)
-    #             return node
-    #         except laucha_parser_missing_token, e:
-    #             self.pos = oldpos
-
-    #         a = self.parse_concatenation()
-    #         node.childs.append(a)
-    #         return node
-    #     except laucha_parser_missing_token, e:
-    #         self.pos = oldpos
-    #         raise
-
-    # def parse_concatenation(self):
-    #     """
-    #     <concatenation>     ::= <simple_RE> <basic_RE>
-    #     """
-    #     oldpos = self.pos
-    #     try:
-    #         node = regexp_node('concatenation')
-    #         a = self.parse_simple_RE()
-    #         b = self.parse_basic_RE()
-    #         node.childs.append(a)
-    #         node.childs.append(b)
-    #         return node
-    #     except laucha_parser_missing_token, e:
-    #         self.pos = oldpos
-    #         raise
-
     def parse_basic_RE(self):
         """
         <basic_RE>          ::= <star> | <plus> | <question> | <elementary_RE>
@@ -646,12 +560,12 @@ def main():
 
     sys.setrecursionlimit(1000000)
 
-    test("[a-bcd-e]")
-    test("[a-bd-ec]")
-    test("[^a-b]")
+#    test("[a-bcd-e]")
+#    test("[a-bd-ec]")
+#    test("[^a-b]")
 
     test("(a|b)*aab")
-
+    test("(a|b|c|d|e)*aab")
     test("([cC]at)|([dD]og)")
 
     #test("[-0-9a-zA-Z.+_]+@[-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}")
